@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+<div class="main-content">
+{% block content %}
+    <h1>{{ object.name }}</h1>
+    <ul>
+        <li>{{ object.kind }}</li>
+        <li>{{ object.breed }}</li>
+        <li><img src="{{pet.photo.url}}" alt="{{ "image" }}"
+                width="150" height="auto"></li>
+{% endblock %}
