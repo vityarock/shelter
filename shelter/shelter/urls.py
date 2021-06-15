@@ -18,21 +18,22 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import url
-from shelter_app.views import PetView, PetViewDetail
+from shelter_app.views import PetView, PetViewDetail, AboutView
 from django.views.generic import RedirectView
 from django_filters.views import FilterView
 from shelter_app.filters import PetFilter
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', PetView.as_view()),
-    path('pets/', PetView.as_view()),
-    path('pets/<str:pk>/', PetViewDetail.as_view()),
+    path('', AboutView.as_view()),
+    path('filter/<str:pk>/', PetViewDetail.as_view()),
+    path('about/', AboutView.as_view()),
     path(
         "favicon.ico",
         RedirectView.as_view(url=static("favicon.ico")),
     ),
-    url(r'^pets/$', FilterView.as_view(filterset_class=PetFilter, template_name='pet_list.html'), name='search'),
+    path('filter/', FilterView.as_view(filterset_class=PetFilter, template_name='pet_filter.html'), name='search'),
+# url(r'^pets/$', FilterView.as_view(filterset_class=PetFilter, template_name='pet_filter.html'), name='search'),
 ]
 urlpatterns += static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

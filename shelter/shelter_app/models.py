@@ -13,7 +13,7 @@ class Pet(models.Model):
     breed = models.CharField(max_length=100, verbose_name="Порода")
     photo = models.ImageField(upload_to='pets_photo', blank=True)
     description = models.TextField()
-    age = models.IntegerField()
+    age = models.IntegerField(verbose_name="Возраст")
 
     def __str__(self):
         return self.name

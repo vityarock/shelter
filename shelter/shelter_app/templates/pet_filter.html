@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+<div class="container-fluid">
+    
+{% block content %}
+	<form class="inline-form" method="get">
+        <div class="row">
+        <div class="form-group col-sm-4 col-md-3">
+            {{ filter.form.age.label_tag }}
+            {% render_field filter.form.age class="form-control-sm"%}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+            {{ filter.form.name.label_tag }}
+            {% render_field filter.form.name class="form-control-sm"%}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+            {{ filter.form.kind.label_tag }}
+            {% render_field filter.form.kind class="form-control-sm"%}
+        </div>
+        <button class="btn btn-primary mb-2" type="submit">Применить фильтр</button>
+        </div>
+    </form>
+    <div class="row">
+    {% for pet in filter.qs %}
+  <div class=" card col-lg-3 col-md-4 col-xs-6">
+              <a href="{{pet.id}}" class="btn btn-light">
+              <img class="card-img-top img-thumbnail" width="300" height="300" src="{{pet.photo.url}}" alt="Card image cap">
+              <h5 class="card-title">{{ pet.name }}</h5>
+              </a>
+      </div>
+	    {% comment %} <div class="card col-lg-3 col-md-4 col-xs-6" style="width: 18rem;">
+            <img class="card-img-top img-thumbnail" src="{{pet.photo.url}}" alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">{{ pet.name }}</h5>
+            <p class="card-text">{{ pet.description }}</p>
+            <a href="{{pet.id}}" class="btn btn-primary">{{ pet.name }}</a>
+        </div>
+    </div> {% endcomment %}
+	{% endfor %}
+    
+</div>
+{% endblock %}
