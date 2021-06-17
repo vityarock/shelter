@@ -1,3 +1,3 @@
-release: python manage.py migrate
-release: python manage.py loaddata data.xml
+release: python ./shelter/manage.py migrate
+release: python ./shelter/manage.py loaddata ./shelter/shelter.xml
 web: python manage.py runserver 0.0.0.0:$PORT
