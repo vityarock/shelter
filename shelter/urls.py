@@ -33,7 +33,6 @@ urlpatterns = [
         RedirectView.as_view(url=static("favicon.ico")),
     ),
     path('filter/', FilterView.as_view(filterset_class=PetFilter, template_name='pet_filter.html'), name='search'),
-# url(r'^pets/$', FilterView.as_view(filterset_class=PetFilter, template_name='pet_filter.html'), name='search'),
 ]
-#urlpatterns += static(
-#    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(
+    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
