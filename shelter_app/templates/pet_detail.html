@@ -7,6 +7,10 @@
         <li>Вид - {{ object.kind }}</li>
         <li>Порода - {{ object.breed }}</li>
         <li>Возраст - {{ object.age }}</li>
-        <li><img src="{{pet.photo.url}}" alt="{{ "image" }}"
-                width="150" height="auto"></li>
+        
+    </ul>
+     <p>{{ object.desc }}</p>
+     <img src="{{pet.photo.url}}" alt="{{ "image" }}"
+                width="500" height="auto">
+</div>
 {% endblock %}
