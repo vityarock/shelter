@@ -15,6 +15,7 @@ class PetFilter(ListView):
     model = Pet
     template_name = "pet_filter.html"
     context_object_name = 'pets'
+    paginate_by = 12
     
     def get_queryset(self):
         qs = self.model.objects.all()
