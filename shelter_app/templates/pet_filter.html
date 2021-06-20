@@ -5,8 +5,8 @@
 <div class="container-fluid">
     
 {% block content %}
-    <form class="inline-form form-group" method="get">
-        <div class="row">
+    <form class="inline-form" method="get">
+        <div class="row ml-1">
         <div class="form-group col-sm-4 col-md-3">
             {{ filter.form.age.label_tag }}
             {% render_field filter.form.age class="form-control-sm"%}
