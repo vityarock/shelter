@@ -11,7 +11,9 @@ class Pet(models.Model):
     name = models.CharField(max_length=100, verbose_name="Кличка")
     kind = models.CharField(max_length=100, choices= KIND_CHOICES, verbose_name="Вид")
     breed = models.CharField(max_length=100, verbose_name="Порода")
-    photo = models.ImageField(upload_to='pets_photo', blank=True)
+    photo = models.ImageField(upload_to='pets_photo', height_field='photo_height', width_field='photo_width', blank=True)
+    photo_height = models.PositiveIntegerField()
+    photo_width = models.PositiveIntegerField()
     description = models.TextField()
     age = models.IntegerField(verbose_name="Возраст")
 
