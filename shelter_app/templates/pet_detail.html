@@ -3,14 +3,16 @@
 <div class="card">
 {% block content %}
     <h1 class="card-title">{{ object.name }}</h1>
-    <ul>
-        <li>Вид - {{ object.kind }}</li>
-        <li>Порода - {{ object.breed }}</li>
-        <li>Возраст - {{ object.age }}</li>
+    <ul class="list-group">
+        <li class="list-group-item">Вид - {{ object.kind }}</li>
+        <li class="list-group-item">Порода - {{ object.breed }}</li>
+        <li class="list-group-item">Возраст - {{ object.age }}</li>
         
     </ul>
      <p>{{ object.description }}</p>
-     <img class="card-img-top img-thumbnail" src="{{pet.photo.url}}" alt="{{ "image" }}"
-                width="300" height="auto">
+     <img class="card-img-top img-thumbnail"
+          src="{{pet.photo.url}}"
+          alt="{{ "image" }}"
+          width="300" height="300">
 </div>
 {% endblock %}
