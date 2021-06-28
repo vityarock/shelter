@@ -10,17 +10,23 @@ class PetView(ListView):
     model = Pet
     template_name = "pet_list.html"
 
-
-class PetFilter(ListView):
+class FilteredView(ListView):
     model = Pet
     template_name = "pet_filter.html"
-    context_object_name = 'pets'
-    paginate_by = 12
-    
+    context_object_name = "pets"
+    paginate_by = 3
+
+    def get_filter(self):
+        return PetFilter(self.request.GET, queryset=super().get_queryset())
+        
     def get_queryset(self):
-        qs = self.model.objects.all()
-        pet_filtered_list = PetFilter(self.request.GET, queryset=qs)
-        return pet_filtered_list.qs
+        return self.get_filter().qs
+
+    def get_context_data(self, *args, **kwargs):
+        return {
+            **super().get_context_data(*args, **kwargs),
+            "filter": self.get_filter(),
+        }
 
 
 class PetViewDetail(DetailView):
