@@ -23,16 +23,18 @@
         </div>
     </form>
     <div class="row">
-    {% for pet in filter.qs %}
-    <div class=" card col-lg-3 col-md-4 col-xs-6">
-        <a href="{{pet.id}}" class="btn btn-light">
-        <img class="card-img-top img-thumbnail" src="{{pet.photo.url}}" width="{{ pet.photo_width }}" height="{{ pet.photo_height }}" alt="Card image cap">
-        <h5 class="card-title">{{ pet.name }}</h5>
-        </a>
-    </div>
 
-    {% endfor %}
-</div>
+        {% for pet in pets %}
+        <div class=" card col-lg-3 col-md-4 col-xs-6">
+            <a href="{{pet.id}}" class="btn btn-light">
+            <img class="card-img-top img-thumbnail" width="300" height="300" src="{{pet.photo.url}}" alt="Card image cap">
+            <h5 class="card-title">{{ pet.name }}</h5>
+            </a>
+        </div>
+	    {% endfor %}
+
+    
+    </div>
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
@@ -49,5 +51,6 @@
             <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
+</div>
 </div>
 {% endblock %}
