@@ -14,7 +14,7 @@ class FilteredView(ListView):
     model = Pet
     template_name = "pet_filter.html"
     context_object_name = "pets"
-    paginate_by = 3
+    paginate_by = 8
 
     def get_filter(self):
         return PetFilter(self.request.GET, queryset=super().get_queryset())
