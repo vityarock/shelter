@@ -30,9 +30,9 @@ urlpatterns = [
     path('about/', AboutView.as_view()),
     path(
         "favicon.ico",
-        RedirectView.as_view(url=static("favicon.ico")),
+        RedirectView.as_view(url=static("favicon.ico"))
     ),
-    path('filter/', FilterView.as_view(filterset_class=PetFilter, template_name='pet_filter.html'), name='search'),
+    path('filter/', FilteredView.as_view()),
 ]
 urlpatterns += static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
