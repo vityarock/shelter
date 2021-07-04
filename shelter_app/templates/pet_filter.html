@@ -3,23 +3,25 @@
 {% load widget_tweaks %}
 
 <div class="container-fluid">
-    
+
+{% load shelter_app_extras %}
+
 {% block content %}
-    <form class="inline-form" method="get">
-        <div class="row ml-1">
-        <div class="form-group col-sm-4 col-md-3">
-            {{ filter.form.age.label_tag }}
-            {% render_field filter.form.age class="form-control-sm"%}
-        </div>
-        <div class="form-group col-sm-4 col-md-3">
-            {{ filter.form.name.label_tag }}
-            {% render_field filter.form.name class="form-control-sm"%}
-        </div>
-        <div class="form-group col-sm-4 col-md-3">
-            {{ filter.form.kind.label_tag }}
-            {% render_field filter.form.kind class="form-control-sm"%}
-        </div>
-        <button class="btn btn-primary mb-2" type="submit">Применить фильтр</button>
+	<form class="inline-form" method="get">
+        <div class="row">
+            <div class="form-group col-sm-4 col-md-3">
+                {{ filter.form.age.label_tag }}
+                {% render_field filter.form.age class="form-control-sm"%}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+                {{ filter.form.name.label_tag }}
+                {% render_field filter.form.name class="form-control-sm"%}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+                {{ filter.form.kind.label_tag }}
+                {% render_field filter.form.kind class="form-control-sm"%}
+            </div>
+            <button class="btn btn-primary mb-2" type="submit">Применить фильтр</button>
         </div>
     </form>
     <div class="row">
@@ -35,44 +37,26 @@
 
     
     </div>
+
 {% if is_paginated %}
-  <ul class="pagination">
-    {% if page_obj.has_previous %}
-      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
+  {% if page_obj.has_previous %}
+    <a href="?{% param_replace page=1 %}">First</a>
+    {% if page_obj.previous_page_number != 1 %}
+      <a href="?{% param_replace page=page_obj.previous_page_number %}">Previous</a>
     {% endif %}
-    {% for i in paginator.page_range %}
-      {% if page_obj.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if page_obj.has_next %}
-      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
+  {% endif %}
+
+  Page {{ page_obj.number }} of {{ paginator.num_pages }}
+
+  {% if page_obj.has_next %}
+    {% if page_obj.next_page_number != paginator.num_pages %}
+      <a href="?{% param_replace page=page_obj.next_page_number %}">Next</a>
     {% endif %}
-  </ul>
+    <a href="?{% param_replace page=paginator.num_pages %}">Last</a>
+  {% endif %}
+
+  <p>Objects {{ page_obj.start_index }} - {{ page_obj.end_index }}</p>
 {% endif %}
-	
-{% comment %} <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div> {% endcomment %}
 </div>
 {% endblock %}
