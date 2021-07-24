@@ -14,6 +14,12 @@ from pathlib import Path
 import dj_database_url
 import django_heroku
 
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,9 +45,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'shelter_app',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.gitlab',
+    
     'django_filters',
     'widget_tweaks',
+    
+    
+    'shelter_app',
+
 ]
 
 MIDDLEWARE = [
@@ -74,21 +90,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'shelter.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'shelter_db',
-#         'USER' : 'db_user',
-#         'PASSWORD' : 'dbuser',
-#         'HOST' : '127.0.0.1',
-#         'PORT' : '5432',
-#     }
-# }
-
+SITE_ID = 1
 
 DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
 # Password validation
