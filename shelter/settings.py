@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.gitlab',
+    'allauth.socialaccount.providers.github',
     
     'django_filters',
     'widget_tweaks',
