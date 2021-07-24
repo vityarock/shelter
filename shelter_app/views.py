@@ -36,3 +36,6 @@ class PetViewDetail(DetailView):
 
 class AboutView(TemplateView):
     template_name = "about.html"
+    
+def index(request):
+    return render(request, "index.html")
