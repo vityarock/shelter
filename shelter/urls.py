@@ -9,7 +9,7 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('', AboutView.as_view()),
+    path('', index),
     path('filter/<str:pk>/', PetViewDetail.as_view()),
     path('about/', AboutView.as_view()),
     path(
