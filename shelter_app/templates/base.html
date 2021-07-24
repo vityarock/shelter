@@ -32,14 +32,14 @@
       <li class="nav-item">
         <a class="nav-link font-weight-bold" href="/about">О нашем приюте</a>
       </li>
+      <li class="nav-item float-right">
       
       {% if user.is_authenticated %}
         <p>Welcome {{ user.username }} !!!</p>
       {% else %}
-      <li class="nav-item mr-0">
         <a class="nav-link font-weight-bold" href="/accounts/login/">Вход</a>
-      </li>
       {% endif%}
+      </li>
 
     </ul>
   </div>
